@@ -1,0 +1,27 @@
+{
+  "name": "useradmin-thepower",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitcodebysebas/userAdmin-thePower.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gitcodebysebas/userAdmin-thePower/issues"
+  },
+  "homepage": "https://github.com/gitcodebysebas/userAdmin-thePower#readme",
+  "dependencies": {
+    "express": "^5.3.0",
+    "mongoose": "^9.11.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
