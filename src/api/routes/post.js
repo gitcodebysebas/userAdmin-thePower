@@ -3,7 +3,7 @@ const { getPosts, postPosts, updatePosts, deletePosts } = require("../controller
 const postsRouter = require("express").Router();
 
 postsRouter.get("/", getPosts);
-postsRouter.post("/", postPosts);cl
+postsRouter.post("/", postPosts);
 postsRouter.put("/:id", updatePosts);
 postsRouter.delete("/:id", deletePosts);
 

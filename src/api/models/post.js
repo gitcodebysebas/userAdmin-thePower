@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    user: { type: String, required: true },
+    userName: { type: String, required: true },
     img: { type: String, required: true },
     comment: { type: String, required: true }
 }, { 
