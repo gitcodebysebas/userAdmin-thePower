@@ -1,5 +1,7 @@
 //! CRUD -> CREAT READ UODATE DELETE
 
+const Post = require("../models/post");
+
 const getPosts = async (req, res, next) => {
     try {
         const posts = await Post.find();
