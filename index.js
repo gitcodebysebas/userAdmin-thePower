@@ -19,6 +19,11 @@ app.use(express.json());
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/users/login", usersRouter);
 
+app.use((error, req, res, next) => {
+    console.log(error);
+    return res.status(error.http_code || 500).json(error.message || "Error interno");
+});
+
 app.use("", (req, res, next) => {
     return res.status(404).json("Ruta no encontrada");
 });
