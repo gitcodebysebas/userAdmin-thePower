@@ -1,6 +1,7 @@
 //! CRUD -> CREAT READ UODATE DELETE
 
 const Post = require("../models/post");
+const { deleteFile } = require("../../utils/deleteFile");
 
 const getPosts = async (req, res, next) => {
     try {
@@ -43,6 +44,13 @@ const deletePosts = async (req, res, next) => {
     try {
         const { id } = req.params;
         const deletedPost = await Post.findByIdAndDelete(id);
+
+        if (!deletedPost) {
+            return res.status(404).json("Post no encontrado");
+        }
+
+        deleteFile(deletedPost.img);
+
         return res.status(200).json({
             message: "Post deleted successfully",
             element: deletedPost

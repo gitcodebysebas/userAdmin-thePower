@@ -7,6 +7,6 @@ usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 usersRouter.get("/", isAuth, isAdmin, getUsers);
 usersRouter.put("/change-role/:id", isAuth, isAdmin, changeRole);
-usersRouter.delete("/delete/:id", isAuth, isAdmin, deleteUser);
+usersRouter.delete("/delete/:id", isAuth, deleteUser);
 
 module.exports = usersRouter;

@@ -2,19 +2,38 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const { generateSign } = require("../../utils/jwt");
 
+// const register = async (req, res, next) => {
+//     try {
+//         const user = new User(req.body);
+
+//         const existingUser = await User.findOne({ email: req.body.email });
+//         if (existingUser) {
+//             return res.status(400).json("El usuario ya existe");
+//         }
+//         const savedUser = await user.save();
+//         return res.status(201).json(savedUser);
+//     } catch (error) {
+//         return res.status(400).json("error")
+//     }
+// }
+
 const register = async (req, res, next) => {
     try {
-        const user = new User(req.body);
-        const existingUser = await User.findOne({ email: req.body.email });
+        const { email, password, userName, userImg } = req.body;
+
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json("El usuario ya existe");
         }
+
+        const user = new User({ email, password, userName, userImg, role: "user" });
         const savedUser = await user.save();
+        savedUser.password = undefined;
         return res.status(201).json(savedUser);
     } catch (error) {
-        return res.status(400).json("error")
+        return res.status(400).json("error");
     }
-}
+};
 
 const login = async (req, res, next) => {
     try {
@@ -83,6 +102,10 @@ const deleteUser = async (req, res, next) => {
 
         if (userToDelete.img) {
             await deleteImgCloudinary(userToDelete.img);
+        }
+
+        if (userToDelete.userImg) {
+            await deleteImgCloudinary(userToDelete.userImg);
         }
 
         await User.findByIdAndDelete(id);
